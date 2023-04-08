@@ -87,7 +87,6 @@ function dispNum(position, num, color) {
             second_two_2.style.background = "transparent"
             bottomBar.style.background = "transparent"
             break;
-
     }
 
 }
@@ -100,45 +99,57 @@ const num1 = document.getElementsByClassName("num1")
 const num2 = document.getElementsByClassName("num2")
 const num3 = document.getElementsByClassName("num3")
 const select_color_text = document.getElementById("select-color-text")
+let colorInp = document.getElementById("color")
+let analogDispNum = document.getElementById("number")
 
-// refresh twice every second
-setInterval(() => {
-
+function analogDisp(color = "D2D2D2", integer = 0) {
     // reset grid
     dispNum(num1, -1)
     dispNum(num2, -1)
     dispNum(num3, -1)
-    let color = document.getElementById("color").value
-    const integer = document.getElementById("number").value
-    let ones = 0
-    let tens = 0
-    let hund = 0
-    select_color_text.style.color = color
-    if (integer >= 1000) {
-        alert("number should be below 1000")
-        document.getElementById("number").value = 0
-        return
-    }
-    if (integer >= 100) {
-        hund = Math.floor(integer / 100)
-        tens = Math.floor((integer - (hund * 100)) / 10)
-        ones = Math.floor((integer - (hund * 100)) - (tens * 10))
-        dispNum(num1, hund, color)
-        dispNum(num2, tens, color)
-        dispNum(num3, ones, color)
-    }
-    else if (integer <= 99) {
-        tens = Math.floor(integer / 10)
-        ones = Math.floor((integer - (tens * 10)))
-        dispNum(num2, tens, color)
-        dispNum(num3, ones, color)
-    } else if (integer <= 9) {
-        ones = integer
-        dispNum(num3, ones, color)
-    }
-}, 500)
+    
+    // let color = document.getElementById("color").value
+        // const integer = document.getElementById("number").value
+        let ones = 0
+        let tens = 0
+        let hund = 0
+        select_color_text.style.color = color
+        if (integer >= 1000) {
+            alert("number should be below 1000")
+            document.getElementById("number").value = 0
+            return
+        }
+        if (integer >= 100) {
+            hund = Math.floor(integer / 100)
+            tens = Math.floor((integer - (hund * 100)) / 10)
+            ones = Math.floor((integer - (hund * 100)) - (tens * 10))
+            dispNum(num1, hund, color)
+            dispNum(num2, tens, color)
+            dispNum(num3, ones, color)
+        }
+        else if (integer <= 99) {
+            tens = Math.floor(integer / 10)
+            ones = Math.floor((integer - (tens * 10)))
+            dispNum(num2, tens, color)
+            dispNum(num3, ones, color)
+        } else if (integer <= 9) {
+            ones = integer
+            dispNum(num3, ones, color)
+        }
+}
 
+let color = "#000"
+let displayNum = 0
+analogDisp(color, displayNum)
 
+colorInp.addEventListener("input", (e) => {
+    color = e.target.value
+    analogDisp(e.target.value, displayNum)
+})
+analogDispNum.addEventListener("input", (e) => {
+    displayNum = e.target.value
+    analogDisp(color, e.target.value)
+})
 
 // clock functioning
 const Hour_tens = document.getElementsByClassName("Hour-tens")
@@ -153,7 +164,6 @@ setInterval(() => {
     let hh = d.getHours()
     let mm = d.getMinutes()
     let ss = d.getSeconds()
-    color = document.getElementById("color").value
     
     // reset
     dispNum(Hour_tens, -1)
@@ -164,12 +174,12 @@ setInterval(() => {
     dispNum(sec_ones, -1)
 
     // set
-    dispNum(Hour_tens, Math.floor(hh / 10), color)
-    dispNum(Hour_ones, (hh - ((Math.floor(hh / 10)) * 10)),color)
-    dispNum(mins_tens, Math.floor(mm / 10), color)
-    dispNum(mins_ones, (mm - ((Math.floor(mm / 10)) * 10)), color)
-    dispNum(sec_tens, Math.floor(ss / 10), color)
-    dispNum(sec_ones, (ss - ((Math.floor(ss / 10)) * 10)), color)
+    dispNum(Hour_tens, Math.floor(hh / 10), "#3F4A64")
+    dispNum(Hour_ones, (hh - ((Math.floor(hh / 10)) * 10)),"#3F4A64")
+    dispNum(mins_tens, Math.floor(mm / 10), "#3F4A64")
+    dispNum(mins_ones, (mm - ((Math.floor(mm / 10)) * 10)), "#3F4A64")
+    dispNum(sec_tens, Math.floor(ss / 10), "#3F4A64")
+    dispNum(sec_ones, (ss - ((Math.floor(ss / 10)) * 10)), "#3F4A64")
 
     delete d
 }, 1000)
