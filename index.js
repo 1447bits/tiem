@@ -1,4 +1,4 @@
-function dispNum(position, num, color) {
+function dispNum(position, num = 0, color = "black") {
 
     let topBar = position[0].childNodes[1]
     let first_two_1 = position[0].childNodes[3].childNodes[1]
