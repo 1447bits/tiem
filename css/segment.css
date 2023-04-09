@@ -1,4 +1,7 @@
 /* 7section display bars styling */
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .segment {
     width: 5em;
 }
