@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../index.css">
+    <title>Display</title>
+</head>
+
+<body>
+
+    <!-- warning you change places of any element and its not going to work anymore -->
+    <div class="main">
+        <div class="title">
+            <h1>Analogue Display</h1>
+        </div>
+        <div class="display">
+            <div class="num1">
+                <div class="bar topBar"></div>
+                <div class="firstTwo">
+                    <div class="bar first-two-1"></div>
+                    <div class="bar first-two-2"></div>
+                </div>
+                <div class="bar midBar"></div>
+                <div class="secondTwo">
+                    <div class="bar second-two-1"></div>
+                    <div class="bar second-two-2"></div>
+                </div>
+                <div class="bar bottomBar"></div>
+            </div>
+
+            <div class="num2">
+                <div class="bar topBar"></div>
+                <div class="firstTwo">
+                    <div class="bar first-two-1"></div>
+                    <div class="bar first-two-2"></div>
+                </div>
+                <div class="bar midBar"></div>
+                <div class="secondTwo">
+                    <div class="bar second-two-1"></div>
+                    <div class="bar second-two-2"></div>
+                </div>
+                <div class="bar bottomBar"></div>
+            </div>
+
+            <div class="num3">
+                <div class="bar topBar"></div>
+                <div class="firstTwo">
+                    <div class="bar first-two-1"></div>
+                    <div class="bar first-two-2"></div>
+                </div>
+                <div class="bar midBar"></div>
+                <div class="secondTwo">
+                    <div class="bar second-two-1"></div>
+                    <div class="bar second-two-2"></div>
+                </div>
+                <div class="bar bottomBar"></div>
+            </div>
+
+        </div>
+
+        <div id="controls">
+            <label for="color" id="color-label">
+                <h4 id="select-color-text">Select Color : </h4>
+                <input type="color" name="color" id="color">
+            </label>
+            <label for="number">
+                <h4>display : </h4>
+                <input type="number" name="" id="number">
+            </label>
+        </div>
+    </div>
+
+    <script type="module">
+        import { dispNum } from "../modules/Display.js"
+        // analogue functioning
+        const bars = document.getElementsByClassName("bar")
+        const num1 = document.getElementsByClassName("num1")
+        const num2 = document.getElementsByClassName("num2")
+        const num3 = document.getElementsByClassName("num3")
+        const select_color_text = document.getElementById("select-color-text")
+        let colorInp = document.getElementById("color")
+        let analogDispNum = document.getElementById("number")
+
+        function analogDisp(color = "D2D2D2", integer = 0) {
+            // reset grid
+            dispNum(num1, -1)
+            dispNum(num2, -1)
+            dispNum(num3, -1)
+
+            let ones = 0
+            let tens = 0
+            let hund = 0
+            select_color_text.style.color = color
+            if (integer >= 1000) {
+                alert("number should be below 1000")
+                document.getElementById("number").value = 0
+                return
+            }
+            if (integer >= 100) {
+                hund = Math.floor(integer / 100)
+                tens = Math.floor((integer - (hund * 100)) / 10)
+                ones = Math.floor((integer - (hund * 100)) - (tens * 10))
+                dispNum(num1, hund, color)
+                dispNum(num2, tens, color)
+                dispNum(num3, ones, color)
+            }
+            else if (integer <= 99) {
+                tens = Math.floor(integer / 10)
+                ones = Math.floor((integer - (tens * 10)))
+                dispNum(num2, tens, color)
+                dispNum(num3, ones, color)
+            } else if (integer <= 9) {
+                ones = integer
+                dispNum(num3, ones, color)
+            }
+        }
+
+        let color = "#000"
+        let displayNum = 69;
+        analogDisp(color, displayNum)
+
+        colorInp.addEventListener("input", (e) => {
+            color = e.target.value
+            analogDisp(e.target.value, displayNum)
+        })
+        analogDispNum.addEventListener("input", (e) => {
+            displayNum = e.target.value
+            analogDisp(color, e.target.value)
+        })
+    </script>
+</body>
+
+</html>
