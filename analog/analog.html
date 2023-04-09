@@ -5,7 +5,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../index.css">
+    <!-- <link rel="stylesheet" href="../index.css"> -->
+    <link rel="stylesheet" href="../css/segment.css">
+    <style>
+        body {
+            background: rgb(223, 223, 223);
+        }
+
+        .title {
+            display: flex;
+            margin: auto;
+            justify-content: center;
+            padding: 1em;
+            margin-bottom: 2em;
+            border-radius: 1em;
+            background-color: rgb(209, 215, 227);
+        }
+        .display {
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+        }
+
+        /* controls styling */
+        #controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        label {
+            display: flex;
+            gap: 1em;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #color {
+            all: unset;
+            width: 2em;
+            border-radius: 35px;
+            height: 1.5em;
+        }
+
+        #number {
+            all: unset;
+            width: 70px;
+            border: 1px solid rgb(32, 77, 191);
+        }
+
+        #number:focus {
+            background: rgba(0, 0, 0, 0.125);
+        }
+    </style>
     <title>Display</title>
 </head>
 
@@ -17,7 +70,7 @@
             <h1>Analogue Display</h1>
         </div>
         <div class="display">
-            <div class="num1">
+            <div class="num1 segment">
                 <div class="bar topBar"></div>
                 <div class="firstTwo">
                     <div class="bar first-two-1"></div>
@@ -31,7 +84,7 @@
                 <div class="bar bottomBar"></div>
             </div>
 
-            <div class="num2">
+            <div class="num2 segment">
                 <div class="bar topBar"></div>
                 <div class="firstTwo">
                     <div class="bar first-two-1"></div>
@@ -45,7 +98,7 @@
                 <div class="bar bottomBar"></div>
             </div>
 
-            <div class="num3">
+            <div class="num3 segment">
                 <div class="bar topBar"></div>
                 <div class="firstTwo">
                     <div class="bar first-two-1"></div>

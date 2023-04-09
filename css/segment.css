@@ -1,0 +1,21 @@
+/* 7section display bars styling */
+.segment {
+    width: 5em;
+}
+.bar {
+    border-radius: 30%;
+    border: 0.5px solid rgba(68, 182, 214, 0.277);
+}
+.topBar, .midBar, .bottomBar {
+    width: 4em;
+    height: 1em;
+    margin-inline: 0.6em;
+}
+.firstTwo, .secondTwo {
+    display: flex;
+    justify-content: space-between;
+}
+.first-two-1, .first-two-2, .second-two-1, .second-two-2 {
+    height: 4em;
+    width: 1em;
+}
